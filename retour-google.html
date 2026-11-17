@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jarvis, retour de Google</title><link rel="stylesheet" href="style.css">
+<meta name="referrer" content="no-referrer"></head>
+<body>
+<h1>Retour vers Jarvis</h1>
+<p id="texte">Redirection vers Jarvis sur le réseau de la maison...</p>
+<p><a id="lien" href="#">Continuer vers Jarvis</a></p>
+<p class="en">Jarvis runs on a private home server. This page only forwards the authorization response from
+Google to it; nothing is stored or sent anywhere else.</p>
+<script>
+  // Jarvis tourne sur le réseau de la maison. Le serveur d'autorisation exige une adresse HTTPS pour le retour :
+  // cette page ne fait que transmettre la réponse du serveur d'autorisation (code, state) à Jarvis, sans rien garder.
+  var JARVIS = "http://192.168.50.131:8095/google/retour";
+  var cible = JARVIS + location.search;
+  document.getElementById("lien").href = cible;
+  if (location.search) { location.replace(cible); }
+  else { document.getElementById("texte").textContent = "Aucune réponse à transmettre."; }
+</script>
+</body></html>
